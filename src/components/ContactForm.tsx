@@ -108,9 +108,9 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             <p className="text-cxl2">{t("contact.info.instagram")}</p>
           </div>
           <div className="flex md:justify-start space-x-4 mt-2">
-            <p className="text-cxl2">ghrthuyfg</p>
+            <p className="text-cxl2">bilanx.by</p>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/bilanx.by?igsh=b3Z0YngwdHpwdTZy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-black hover:text-burgundy-dark mt-2"
@@ -122,9 +122,9 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             <p className="text-cxl2">{t("contact.info.telegram")}</p>
           </div>
           <div className="flex md:justify-start space-x-4 mt-2">
-            <p className="text-cxl2">fgrtyhfg</p>
+            <p className="text-cxl2">@bilanx.by</p>
             <a
-              href="https://t.me"
+              href="https://t.me/bilanxby"
               target="_blank"
               rel="noopener noreferrer"
               className="text-black hover:text-burgundy-dark mt-2"
