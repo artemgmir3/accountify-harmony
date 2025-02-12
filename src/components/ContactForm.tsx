@@ -50,7 +50,6 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             has_client_bank: calculatorData?.hasClientBank,
             has_fea: calculatorData?.hasFEA,
             has_hr: calculatorData?.hasHR,
-            has_cost_accounting: calculatorData?.hasCostAccounting,
             advance_reports_count: calculatorData?.advanceReportsCount,
             acts_count: calculatorData?.actsCount,
             incoming_ttn_positions: calculatorData?.incomingTTNPositions,
