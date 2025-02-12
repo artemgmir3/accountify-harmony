@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,7 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { CalculatorFormData } from "./calculator/types";
 import { useLanguage } from "@/context/LanguageContext";
-import { Instagram, Globe, Send } from "lucide-react";
+import { Instagram, Send } from "lucide-react";
+
 interface ContactFormProps {
   calculatedCost?: number;
   calculatorData?: CalculatorFormData & { calculatorType: string };
@@ -47,9 +49,13 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             vehicle_count: calculatorData?.vehicleCount,
             has_client_bank: calculatorData?.hasClientBank,
             has_fea: calculatorData?.hasFEA,
-            trade_type: calculatorData?.tradeType,
+            has_hr: calculatorData?.hasHR,
+            has_cost_accounting: calculatorData?.hasCostAccounting,
             advance_reports_count: calculatorData?.advanceReportsCount,
             acts_count: calculatorData?.actsCount,
+            incoming_ttn_positions: calculatorData?.incomingTTNPositions,
+            outgoing_ttn_positions: calculatorData?.outgoingTTNPositions,
+            retail_points: calculatorData?.retailPoints,
             calculator_type: calculatorData?.calculatorType,
           }
         ]);
@@ -80,13 +86,10 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
   };
 
   return (
-      <div id="contact" className="max-w-site2 bg1 mx-auto">
+    <div id="contact" className="max-w-site2 bg1 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
-        {/* Vertical gold divider */}
-
-        
-        {/* Contact Information Section */}
-              <div className="p-8 rounded-lg shadow-xl bg-white">
+        {/* Контактная информация */}
+        <div className="p-8 rounded-lg shadow-xl bg-white">
           <h3 className="text-2xl font-bold text-black mb-6">
             {t("contact.info.title")}
           </h3>
@@ -99,48 +102,50 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
               <p className="text-cxl2 mb-2">{t("contact.info.email")}</p>
               <a href="mailto:info@bilanx.by" className="text-cxl2">info@bilanx.by</a>
             </div>
-                  </div>
-                  <div className="flex md:justify-start space-x-4 mt-4">
-                      <p className="text-cxl2">{t("contact.info.instagram")}</p>
-                  </div>
-                  <div className="flex md:justify-start space-x-4 mt-2">
-                      <p className="text-cxl2">ghrthuyfg</p>
-                      <a
-                          href="https://instagram.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-black hover:text-burgundy-dark mt-2"
-                      >
-                          <Instagram size={16} />
-                      </a>
-                 </div>
-                  <div className="flex md:justify-start space-x-4 mt-4">
-                      <p className="text-cxl2">{t("contact.info.telegram")}</p>
-                  </div>
-                  <div className="flex md:justify-start space-x-4 mt-2">
-                      <p className="text-cxl2">fgrtyhfg</p>
-                      <a
-                          href="https://t.me"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-black hover:text-burgundy-dark mt-2"
-                      >
-                          <Send size={16} />
-                      </a>
-                  </div>
+          </div>
+          <div className="flex md:justify-start space-x-4 mt-4">
+            <p className="text-cxl2">{t("contact.info.instagram")}</p>
+          </div>
+          <div className="flex md:justify-start space-x-4 mt-2">
+            <p className="text-cxl2">ghrthuyfg</p>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:text-burgundy-dark mt-2"
+            >
+              <Instagram size={16} />
+            </a>
+          </div>
+          <div className="flex md:justify-start space-x-4 mt-4">
+            <p className="text-cxl2">{t("contact.info.telegram")}</p>
+          </div>
+          <div className="flex md:justify-start space-x-4 mt-2">
+            <p className="text-cxl2">fgrtyhfg</p>
+            <a
+              href="https://t.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:text-burgundy-dark mt-2"
+            >
+              <Send size={16} />
+            </a>
+          </div>
         </div>
 
-              {/* Application Form Section */}
-              <div className="bg-white rounded-lg shadow-xl p-8">
+        {/* Форма заявки */}
+        <div className="bg-white rounded-lg shadow-xl p-8">
           <h3 className="text-2xl font-bold text-black mb-6">
             {t("contact.title")}
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {calculatedCost && (
               <div className="mb-6">
                 <p className="text-xxcl text-black">
                   {calculatedCost} BYN
                 </p>
               </div>
+            )}
 
             <Input 
               name="name"
