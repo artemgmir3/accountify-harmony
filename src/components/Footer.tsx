@@ -79,7 +79,7 @@ const Footer = () => {
               </div>
               <div className="flex justify-center md:justify-start space-x-4 mt-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/bilanx.by?igsh=b3Z0YngwdHpwdTZy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-burgundy-dark"
@@ -87,7 +87,7 @@ const Footer = () => {
                   <Instagram size={24} />
                 </a>
                 <a
-                  href="https://t.me"
+                  href="https://t.me/bilanxby"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-burgundy-dark"
