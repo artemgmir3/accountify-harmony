@@ -18,6 +18,8 @@ export interface CalculatorFormData {
   actsCount?: number;
   advanceReportsCount?: number;
   tradeType: string;
+  hasWB: boolean;
+  hasOZON: boolean;
 }
 
 export interface CalculatorFormProps {
