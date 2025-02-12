@@ -57,6 +57,8 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             outgoing_ttn_positions: calculatorData?.outgoingTTNPositions,
             retail_points: calculatorData?.retailPoints,
             calculator_type: calculatorData?.calculatorType,
+            wildberries: calculatorData?.wildberries,
+            ozon: calculatorData?.ozon,
           }
         ]);
 

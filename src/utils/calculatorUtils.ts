@@ -1,3 +1,4 @@
+
 interface CalculationParams {
   ownershipType: string;
   taxSystem: string;
@@ -24,31 +25,24 @@ export const calculateProductionCost = (params: CalculationParams): number => {
     let cost2 = 0;
     let cost3 = 0;
     let cost4 = 0;
-  // Base cost depending on ownership type and tax system
-  cost += params.ownershipType === 'organization' ? 150 : 100;
+    
     if (params.ownershipType == 'organization') {
         switch (params.taxSystem) {
             case 'main':
-                cost =  210;
+                cost = 210;
                 cost += params.employeeCount * 50 * 1.4;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 5 * 1.4;
                 cost += params.incomingTTN * 5 * 1.4;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.4;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.4;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.4;
                 break;
             case 'simplified':
                 cost = 180;
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 5 * 1.2;
                 cost += params.incomingTTN * 5 * 1.2;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
         }
     }
@@ -57,38 +51,29 @@ export const calculateProductionCost = (params: CalculationParams): number => {
             case 'main':
                 cost = 120;
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 5 * 1.2;
                 cost += params.incomingTTN * 5 * 1.2;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
             case 'singletax':
-                cost = 100
+                cost = 100;
                 cost += params.employeeCount * 50;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 5;
                 cost += params.incomingTTN * 5;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5;
+                cost += (params.advanceReportsCount || 0) * 5;
                 break;
         }
     }
-  
 
-
-        // Additional services
-    if (params.hasClientBank) cost1=cost *0.4;
-  if (params.hasFEA) cost2=cost *0.2;
-  if (params.hasHR) cost3=cost *0.05;
-    cost4 = cost; 
+    if (params.hasClientBank) cost1 = cost * 0.4;
+    if (params.hasFEA) cost2 = cost * 0.2;
+    if (params.hasHR) cost3 = cost * 0.05;
+    cost4 = cost;
     cost = cost1 + cost2 + cost3 + cost4;
     cost = Math.round(cost * 100) / 100;
-  return cost;
+    return cost;
 };
 
 export const calculateWholesaleCost = (params: CalculationParams): number => {
@@ -97,34 +82,26 @@ export const calculateWholesaleCost = (params: CalculationParams): number => {
     let cost2 = 0;
     let cost3 = 0;
     let cost4 = 0;
-  // Base cost depending on ownership type and tax system
-    cost += params.ownershipType === 'organization' ? 150 : 100;
+
     if (params.ownershipType == 'organization') {
         switch (params.taxSystem) {
             case 'main':
                 cost = 210;
-               // Add cost per employee
-                cost += params.employeeCount * 50*1.4;
-                // Add cost per TTN and positions
+                cost += params.employeeCount * 50 * 1.4;
                 cost += (params.outgoingTTN + params.incomingTTN) * 4.5 * 1.4;
                 cost += (params.incomingTTNPositions || 0) * (params.incomingTTN) * 0.5 * 1.4;
                 cost += (params.outgoingTTNPositions || 0) * (params.outgoingTTN) * 0.5 * 1.4;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.4;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.4;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.4;
                 break;
             case 'simplified':
                 cost = 180;
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per TTN and positions
                 cost += (params.outgoingTTN + params.incomingTTN) * 4.5 * 1.2;
                 cost += (params.incomingTTNPositions || 0) * (params.incomingTTN) * 0.5 * 1.2;
                 cost += (params.outgoingTTNPositions || 0) * (params.outgoingTTN) * 0.5 * 1.2;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
         }
     }
@@ -133,32 +110,26 @@ export const calculateWholesaleCost = (params: CalculationParams): number => {
             case 'main':
                 cost = 120;
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 4.5 * 1.2;
                 cost += params.incomingTTN * 4.5 * 1.2;
                 cost += (params.incomingTTNPositions || 0) * (params.incomingTTN) * 0.5 * 1.2;
                 cost += (params.outgoingTTNPositions || 0) * (params.outgoingTTN) * 0.5 * 1.2;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
             case 'singletax':
-                cost = 100
+                cost = 100;
                 cost += params.employeeCount * 50;
-                // Add cost per TTN
                 cost += params.outgoingTTN * 4.5;
                 cost += params.incomingTTN * 4.5;
                 cost += (params.incomingTTNPositions || 0) * (params.incomingTTN) * 0.5;
                 cost += (params.outgoingTTNPositions || 0) * (params.outgoingTTN) * 0.5;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5;
+                cost += (params.advanceReportsCount || 0) * 5;
                 break;
         }
     }
-  // Additional services
+
     if (params.hasClientBank) cost1 = cost * 0.5;
     if (params.hasFEA) cost2 = cost * 0.3;
     if (params.hasHR) cost3 = cost * 0.05;
@@ -167,8 +138,7 @@ export const calculateWholesaleCost = (params: CalculationParams): number => {
     cost4 = cost;
     cost = cost1 + cost2 + cost3 + cost4;
     cost = Math.round(cost * 100) / 100;
-  
-  return cost;
+    return cost;
 };
 
 export const calculateRetailCost = (params: CalculationParams): number => {
@@ -177,40 +147,30 @@ export const calculateRetailCost = (params: CalculationParams): number => {
     let cost2 = 0;
     let cost3 = 0;
     let cost4 = 0;
-  // Base cost depending on ownership type and tax system
-  cost += params.ownershipType === 'organization' ? 150 : 100;
+
     if (params.ownershipType == 'organization') {
         switch (params.taxSystem) {
             case 'main':
                 cost = 210;
-                if (params.retailPoints >= 1) {
+                if ((params.retailPoints || 0) >= 1) {
                     cost = cost - 50 * 1.4;
                 }
-                // Add cost per employee
                 cost += params.employeeCount * 50 * 1.4;
-                cost += params.retailPoints * 50*1.4;
-                // Add cost per TTN and positions
+                cost += (params.retailPoints || 0) * 50 * 1.4;
                 cost += params.incomingTTN * 5 * 1.4;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.4;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.4;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.4;
                 break;
             case 'simplified':
                 cost = 180;
-                if (params.retailPoints >= 1) {
+                if ((params.retailPoints || 0) >= 1) {
                     cost = cost - 50 * 1.2;
                 }
-                // Add cost per employee
                 cost += params.employeeCount * 50 * 1.2;
-                cost += params.retailPoints * 50 * 1.2;
-                cost += params.incomingTTN * 5*1.2;
-                // Add cost per TTN and positions
-
-                // Add cost per vehicle
+                cost += (params.retailPoints || 0) * 50 * 1.2;
+                cost += params.incomingTTN * 5 * 1.2;
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
         }
     }
@@ -218,46 +178,36 @@ export const calculateRetailCost = (params: CalculationParams): number => {
         switch (params.taxSystem) {
             case 'main':
                 cost = 120;
-                if (params.retailPoints >= 1) {
+                if ((params.retailPoints || 0) >= 1) {
                     cost = cost - 50 * 1.2;
                 }
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per TTN
-                cost += params.retailPoints * 50 * 1.2;
+                cost += (params.retailPoints || 0) * 50 * 1.2;
                 cost += params.incomingTTN * 5 * 1.2;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
             case 'singletax':
-                cost = 100
-                if (params.retailPoints >= 1) {
+                cost = 100;
+                if ((params.retailPoints || 0) >= 1) {
                     cost = cost - 50;
                 }
                 cost += params.employeeCount * 50;
-                // Add cost per TTN
                 cost += (params.retailPoints || 0) * 50;
                 cost += params.incomingTTN * 5;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5;
+                cost += (params.advanceReportsCount || 0) * 5;
                 break;
         }
     }
 
-
-  
-  // Additional services
     if (params.hasClientBank) cost1 = cost * 0.5;
     if (params.hasFEA) cost2 = cost * 0.3;
     if (params.hasHR) cost3 = cost * 0.1;
     cost4 = cost;
     cost = cost1 + cost2 + cost3 + cost4;
     cost = Math.round(cost * 100) / 100;
-  
-  return cost;
+    return cost;
 };
 
 export const calculateServicesCost = (params: CalculationParams): number => {
@@ -266,31 +216,22 @@ export const calculateServicesCost = (params: CalculationParams): number => {
     let cost2 = 0;
     let cost3 = 0;
     let cost4 = 0;
-  // Base cost depending on ownership type and tax system
-  cost += params.ownershipType === 'organization' ? 150 : 100;
+
     if (params.ownershipType == 'organization') {
         switch (params.taxSystem) {
             case 'main':
                 cost = 210;
-                // Add cost per employee
                 cost += params.employeeCount * 50 * 1.4;
-                // Add cost per act
-                cost += (params.actsCount || 0) * 5*1.4;
-                // Add cost per vehicle
+                cost += (params.actsCount || 0) * 5 * 1.4;
                 cost += params.vehicleCount * 50 * 1.4;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.4;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.4;
                 break;
             case 'simplified':
                 cost = 180;
-                // Add cost per employee
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per act
-                cost += (params.actsCount || 0) * 5*1.2;
-                // Add cost per vehicle
+                cost += (params.actsCount || 0) * 5 * 1.2;
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
         }
     }
@@ -298,35 +239,26 @@ export const calculateServicesCost = (params: CalculationParams): number => {
         switch (params.taxSystem) {
             case 'main':
                 cost = 120;
-                // Add cost per employee
                 cost += params.employeeCount * 50 * 1.2;
-                // Add cost per act
-                cost += (params.actsCount || 0) * 5*1.2;
-                // Add cost per vehicle
+                cost += (params.actsCount || 0) * 5 * 1.2;
                 cost += params.vehicleCount * 50 * 1.2;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5 * 1.2;
+                cost += (params.advanceReportsCount || 0) * 5 * 1.2;
                 break;
             case 'singletax':
-                cost = 100
-                // Add cost per act
+                cost = 100;
                 cost += (params.actsCount || 0) * 5;
-                // Add cost per employee
                 cost += params.employeeCount * 50;
-                // Add cost per vehicle
                 cost += params.vehicleCount * 50;
-                // Add cost for advance reports
-                cost += params.advanceReportsCount * 5;
+                cost += (params.advanceReportsCount || 0) * 5;
                 break;
         }
     }
-  // Additional services
+
     if (params.hasClientBank) cost1 = cost * 0.3;
     if (params.hasFEA) cost2 = cost * 0.2;
     if (params.hasHR) cost3 = cost * 0.05;
     cost4 = cost;
     cost = cost1 + cost2 + cost3 + cost4;
     cost = Math.round(cost * 100) / 100;
-  
-  return cost;
+    return cost;
 };
