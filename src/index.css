@@ -283,3 +283,12 @@ img {
     display: none;
   }
 }
+
+[aria-label="Notifications alt+T"] {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
