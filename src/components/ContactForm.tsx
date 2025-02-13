@@ -49,7 +49,6 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             vehicle_count: calculatorData?.vehicleCount,
             has_client_bank: calculatorData?.hasClientBank,
             has_fea: calculatorData?.hasFEA,
-            has_hr: calculatorData?.hasHR,
             advance_reports_count: calculatorData?.advanceReportsCount,
             acts_count: calculatorData?.actsCount,
             incoming_ttn_positions: calculatorData?.incomingTTNPositions,
