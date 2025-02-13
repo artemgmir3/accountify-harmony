@@ -140,13 +140,12 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
             {t("contact.title")}
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {calculatedCost && (
               <div className="mb-6">
                 <p className="text-xxcl text-black">
                   {calculatedCost} BYN
                 </p>
               </div>
-            )}
+            )
 
             <Input 
               name="name"
