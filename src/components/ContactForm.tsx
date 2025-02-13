@@ -145,7 +145,6 @@ const ContactForm = ({ calculatedCost, calculatorData }: ContactFormProps) => {
                   {calculatedCost} BYN
                 </p>
               </div>
-            )
 
             <Input 
               name="name"
